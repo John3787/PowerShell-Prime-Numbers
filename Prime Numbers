@@ -1,0 +1,65 @@
+
+#
+# Finding Prime Numbers
+#
+# Primes between 2 and 1000
+#
+
+Cls
+
+Write-Host "Calculating prime numbers"
+Write-Host ""
+
+$count = 0
+2..1000 | foreach {
+
+    $number = $_
+    $divisor = [math]::Sqrt($number)
+    $prime = $true
+
+    2..$divisor | foreach {
+        if ($number % $_ -eq 0) {
+            $prime = $false
+        }
+    }
+
+    If ($prime) {
+        Write-Host -NoNewline $number.ToString().PadLeft(4)
+        $count++
+        If ($count % 10 -eq 0) {
+            Write-Host ""
+        }
+    }
+
+}
+
+Write-Host ""
+Write-Host "$count primes between 2 and 1000"
+Write-Host ""
+
+$count = 0
+1000000..1000999 | foreach {
+
+    $number = $_
+    $divisor = [math]::Sqrt($number)
+    $prime = $true
+
+    2..$divisor | foreach {
+        if ($number % $_ -eq 0) {
+            $prime = $false
+        }
+    }
+
+    If ($prime) {
+        Write-Host -NoNewline $number.ToString().PadLeft(8)
+        $count++
+        If ($count % 5 -eq 0) {
+            Write-Host ""
+        }
+    }
+
+}
+
+Write-Host ""
+Write-Host "$count primes between 1000000 and 1000999"
+Write-Host ""
